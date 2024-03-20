@@ -1,0 +1,16 @@
+#행렬 이동, 대각 원소만 변경되고 나머지는 그대로이다.
+import numpy as np
+
+A = np.array([ [4,5,1], [0,1,11], [4,9,7]])
+s = 6
+ntest = A + s
+test = A + s * np.eye(len(A))
+
+print(A)
+print()
+print(ntest)
+print(A == ntest)
+
+print()
+print(test)
+print(A == test)
