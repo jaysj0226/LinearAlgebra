@@ -1,0 +1,27 @@
+import numpy as np
+
+C = np.arange(100).reshape(10,10)
+C_1 = C[0:5, 0:5]
+
+
+# visualize the matrices as maps
+_,axs = plt.subplots(1,2,figsize=(10,5))
+
+axs[0].imshow(C,cmap='gray',origin='upper',vmin=0,vmax=np.max(C))
+axs[0].plot([4.5,4.5],[-.5,9.5],'w--')
+axs[0].plot([-.5,9.5],[4.5,4.5],'w--')
+axs[0].set_title('Original matrix')
+# text labels
+for (j,i),num in np.ndenumerate(C):
+  axs[0].text(i,j,num,color=[.8,.8,.8],ha='center',va='center')
+
+
+axs[1].imshow(C_1,cmap='gray',origin='upper',vmin=0,vmax=np.max(C))
+axs[1].set_title('Submatrix')
+# text labels
+for (j,i),num in np.ndenumerate(C_1):
+  axs[1].text(i,j,num,color=[.8,.8,.8],ha='center',va='center')
+
+
+plt.savefig('Figure20240320.png',dpi=300)
+plt.show()
