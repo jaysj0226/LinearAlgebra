@@ -1,0 +1,20 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+num_of_experiments = 10
+scalingVals = np.linspace(0, 50, 40)
+'''10 x 40 영행렬 구현'''
+matrixNorms = np.zeros((len(scalingVals), num_of_experiments))
+for si in range(len(scalingVals)):
+  for expi in range(num_of_experiments):
+
+    R = np.random.randn(10,10) * scalingVals[si]
+
+    matrixNorms[si, expi] = np.linalg.norm(R, 'fro')
+
+plt.plot(scalingVals, np.mean(matrixNorms, axis = 1), 'ko-')
+plt.xlabel("Scalar matrix")
+plt.ylabel("average of Froben Matrix")
+plt.show()
+
+print(matrixNorms[0:1])
