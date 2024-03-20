@@ -1,0 +1,22 @@
+#표준 행렬 곱셈(행렬 곱셈)
+#표준을 붙인 까닭은 아다마르곱, 스칼라 곱셈과 구분짓기 위함이다.
+import numpy as np
+
+
+def diff(M,N):
+
+  if (np.dot(M,N) == np.dot(N,M)).all():
+    print("True")
+  else:
+    print("False, 정방행렬이라 한다 한들 서로의 위치를 바꾼 내적의 값은 상이할 수 있다.")
+    print(f'{np.shape(np.dot(M,N))}')
+    print(f'{np.shape(np.dot(N,M))}')
+  return
+
+
+A = np.random.randn(4,4)
+B = np.random.randn(4,4)
+
+print(np.dot(A,B))
+print(np.dot(B,A))
+diff(A,B)
