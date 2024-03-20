@@ -1,0 +1,15 @@
+#아다마르 곱
+import numpy as np
+
+A = np.random.randn(4,3)
+B = np.random.randn(4,3)
+
+print(A*B)
+print(np.multiply(A,B))
+print(A @ B.T) #행렬곱
+
+if (A*B == (np.multiply(A,B))).all():
+  print('\n')
+  print('아다마르곱 두 형식은 동일하다 yes\n')
+else:
+  print('no\n')
