@@ -1,0 +1,24 @@
+#1)프로베니우스 거리 구하기
+
+import numpy as np
+def Froben(A,B):
+  C = A - B
+
+  return np.sqrt(np.sum(C**2))
+
+N = 7
+A = np.random.randn(N,N)
+B = np.random.randn(N,N)
+print(A)
+print(' ')
+
+print(B)
+s = 1
+num = 0
+while Froben(s*A,s*B) > 1:
+  s *= 0.9
+  num += 1
+
+print(f'Number of iterations : {num-1}')
+print(f'Final value of scalar : {s/ 0.9: .3f}')
+print(f' Final Froben distance : {Froben(s/ .9*A, s/ .9*B): .3f}')
