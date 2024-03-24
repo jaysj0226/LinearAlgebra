@@ -1,0 +1,27 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+rangeOfRank = np.arange(3,31)
+
+iter = 100
+
+detMatrix = np.zeros((len(rangeOfRank), iter))
+
+for i in range(len(rangeOfRank)):
+  for j in range(iter):
+
+    S = np.random.randn(rangeOfRank[i], rangeOfRank[i])
+
+    S[:,0] = S[:,1]
+
+    detMatrix[i,j] = np.abs(np.linalg.det(S))
+
+
+plt.figure(figsize=(6,4))
+plt.plot(rangeOfRank**2,np.log(np.mean(detMatrix,axis=1)),'ks-',linewidth=3)
+plt.xlabel('Number of elements in the matrix')
+plt.ylabel('Log determinant')
+plt.title('Empirical determinants of singular matrices')
+plt.savefig('Figure20240324.png',dpi=300)
+plt.show()
+     
