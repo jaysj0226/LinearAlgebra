@@ -1,0 +1,44 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+#매개변수 M,r입력 받기
+M,r = map(int,input().split())
+
+#M,r을 토대로 MxM정방행렬 만들기
+def makeMatrix(M,r):
+  return np.random.randn(M,r) @ np.random.randn(r,M)
+
+#matrix 사이즈는 20이고, 계수의 범위는 2부터 16
+matSize = 20
+rangeOfRank = range(2,16)
+
+#만든 행렬의 계수들을 넣을 곳
+initRanks = np.zeros((len(rangeOfRank),len(rangeOfRank),2))
+
+for i in range(len(rangeOfRank)):
+  for j in range(len(rangeOfRank)):
+
+    S = makeMatrix(matSize, rangeOfRank[i]) + makeMatrix(matSize, rangeOfRank[j])
+    N = makeMatrix(matSize, rangeOfRank[i]) @ makeMatrix(matSize, rangeOfRank[j])
+
+    initRanks[i,j,0] = np.linalg.matrix_rank(S)
+    initRanks[i,j,1] = np.linalg.matrix_rank(N)
+
+#만든 행렬들을 시각화하기
+fig, axs = plt.subplots(1,2,figsize = (10,6))
+
+for i in range(2):
+
+  # heatmap 그리기
+  h = axs[i].imshow(initRanks[:,:,i],vmin=np.min(rangeOfRank),vmax=np.max(rangeOfRank),origin='lower',
+                    extent=(rangeOfRank[0],rangeOfRank[-1],rangeOfRank[0],rangeOfRank[-1]))
+  
+  # 색상넣기, 축 이름 설정하기
+  fig.colorbar(h,ax=axs[i],fraction=.045)
+  axs[i].set_xlabel('Rank of A')
+  axs[i].set_ylabel('Rank of B')
+
+
+plt.savefig('Figure20240324.png',dpi=300)
+plt.tight_layout()
+plt.show()
